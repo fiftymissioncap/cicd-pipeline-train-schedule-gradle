@@ -1,0 +1,563 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 65536 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2763), pid=12256, tid=0x00007fb5cdb76700
+#
+# JRE version: OpenJDK Runtime Environment (8.0_252-b09) (build 1.8.0_252-b09)
+# Java VM: OpenJDK 64-Bit Server VM (25.252-b09 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fb5c8115800):  JavaThread "C1 CompilerThread1" daemon [_thread_in_vm, id=12265, stack(0x00007fb5cda77000,0x00007fb5cdb77000)]
+
+Stack: [0x00007fb5cda77000,0x00007fb5cdb77000],  sp=0x00007fb5cdb75000,  free space=1016k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xadf8ed]  VMError::report_and_die()+0x15d
+V  [libjvm.so+0x4f4c6a]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0xaa
+V  [libjvm.so+0x8c32f8]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0xd8
+V  [libjvm.so+0x8ba5fe]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x2e
+V  [libjvm.so+0xadc574]  VirtualSpace::expand_by(unsigned long, bool)+0x1b4
+V  [libjvm.so+0x601d6c]  CodeHeap::expand_by(unsigned long)+0x6c
+V  [libjvm.so+0x47c4d6]  CodeCache::allocate(int, bool)+0x46
+V  [libjvm.so+0x88c397]  nmethod::new_nmethod(methodHandle, int, int, CodeOffsets*, int, DebugInformationRecorder*, Dependencies*, CodeBuffer*, int, OopMapSet*, ExceptionHandlerTable*, ImplicitExceptionTable*, AbstractCompiler*, int)+0x1a7
+V  [libjvm.so+0x41b16e]  ciEnv::register_method(ciMethod*, int, CodeOffsets*, int, CodeBuffer*, int, OopMapSet*, ExceptionHandlerTable*, ImplicitExceptionTable*, AbstractCompiler*, int, bool, bool, RTMState)+0x38e
+V  [libjvm.so+0x35d6fb]  Compilation::compile_method()+0x21b
+V  [libjvm.so+0x35da52]  Compilation::Compilation(AbstractCompiler*, ciEnv*, ciMethod*, int, BufferBlob*)+0x252
+V  [libjvm.so+0x35e7c7]  Compiler::compile_method(ciEnv*, ciMethod*, int)+0xb7
+V  [libjvm.so+0x4a9406]  CompileBroker::invoke_compiler_on_method(CompileTask*)+0x996
+V  [libjvm.so+0x4aa33a]  CompileBroker::compiler_thread_loop()+0x56a
+V  [libjvm.so+0xa893f2]  JavaThread::thread_main_inner()+0x212
+V  [libjvm.so+0x8c0402]  java_start(Thread*)+0xf2
+C  [libpthread.so.0+0x7ea5]  start_thread+0xc5
+
+
+Current CompileTask:
+C1: 780811 5276   !   3       sun.nio.ch.SharedFileLockTable::removeAll (139 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007fb57ca8c800 JavaThread "Task worker for ':'" [_thread_blocked, id=12471, stack(0x00007fb5b87fa000,0x00007fb5b88fb000)]
+  0x00007fb57c836000 JavaThread "Cache worker for Build Output Cleanup Cache (/home/cloud_user/cicd-pipeline-train-schedule-gradle/.gradle/buildOutputCleanup)" [_thread_blocked, id=12470, stack(0x00007fb5b8cfd000,0x00007fb5b8dfe000)]
+  0x00007fb57c835800 JavaThread "Cache worker for task history cache (/home/cloud_user/cicd-pipeline-train-schedule-gradle/.gradle/4.6/taskHistory)" [_thread_blocked, id=12469, stack(0x00007fb577cff000,0x00007fb577e00000)]
+  0x00007fb57c5ce000 JavaThread "Build operations" [_thread_blocked, id=12468, stack(0x00007fb5a54bb000,0x00007fb5a55bc000)]
+  0x00007fb57c3e6000 JavaThread "Cache worker for Artifact transforms cache (/home/cloud_user/.gradle/caches/transforms-1)" [_thread_blocked, id=12467, stack(0x00007fb5a4eb9000,0x00007fb5a4fba000)]
+  0x00007fb57c002800 JavaThread "Cache worker for file hash cache (/home/cloud_user/cicd-pipeline-train-schedule-gradle/.gradle/4.6/fileHashes)" [_thread_blocked, id=12464, stack(0x00007fb5b80f9000,0x00007fb5b81fa000)]
+  0x00007fb57c832000 JavaThread "Stdin handler" [_thread_blocked, id=12463, stack(0x00007fb5a57bc000,0x00007fb5a58bd000)]
+  0x00007fb57cea2800 JavaThread "Asynchronous log dispatcher for DefaultDaemonConnection: socket connection from /0:0:0:0:0:0:0:1:35852 to /0:0:0:0:0:0:0:1:56014" [_thread_blocked, id=12462, stack(0x00007fb5b8dfe000,0x00007fb5b8eff000)]
+  0x00007fb580006800 JavaThread "Cancel handler" [_thread_blocked, id=12461, stack(0x00007fb5cc36a000,0x00007fb5cc46b000)]
+  0x00007fb580009800 JavaThread "Handler for socket connection from /0:0:0:0:0:0:0:1:35852 to /0:0:0:0:0:0:0:1:56014" [_thread_in_native, id=12460, stack(0x00007fb5b8eff000,0x00007fb5b9000000)]
+  0x00007fb5a0006000 JavaThread "Exec process Thread 3" [_thread_in_native, id=12429, stack(0x00007fb5777fc000,0x00007fb5778fd000)]
+  0x00007fb5a0005000 JavaThread "Exec process Thread 2" [_thread_in_native, id=12423, stack(0x00007fb5778fd000,0x00007fb5779fe000)]
+  0x00007fb5a0001000 JavaThread "process reaper" daemon [_thread_in_native, id=12422, stack(0x00007fb5cc030000,0x00007fb5cc069000)]
+  0x00007fb57ca89800 JavaThread "Exec process" [_thread_blocked, id=12420, stack(0x00007fb5779fe000,0x00007fb577aff000)]
+  0x00007fb58000c000 JavaThread "Daemon worker Thread 2" [_thread_blocked, id=12407, stack(0x00007fb5cc069000,0x00007fb5cc16a000)]
+  0x00007fb58801a000 JavaThread "Daemon Thread 2" [_thread_blocked, id=12404, stack(0x00007fb5cc46b000,0x00007fb5cc56c000)]
+  0x00007fb57c167800 JavaThread "File lock request listener" [_thread_in_native, id=12279, stack(0x00007fb5b88fb000,0x00007fb5b89fc000)]
+  0x00007fb57c15a000 JavaThread "Cache worker for file hash cache (/home/cloud_user/.gradle/caches/4.6/fileHashes)" [_thread_blocked, id=12278, stack(0x00007fb5b89fc000,0x00007fb5b8afd000)]
+  0x00007fb5c9130000 JavaThread "Daemon periodic checks" [_thread_blocked, id=12269, stack(0x00007fb5cc56c000,0x00007fb5cc66d000)]
+  0x00007fb5c9114000 JavaThread "Incoming local TCP Connector on port 35852" [_thread_in_native, id=12268, stack(0x00007fb5cc674000,0x00007fb5cc775000)]
+  0x00007fb5c8118800 JavaThread "Service Thread" daemon [_thread_blocked, id=12266, stack(0x00007fb5cd975000,0x00007fb5cda76000)]
+=>0x00007fb5c8115800 JavaThread "C1 CompilerThread1" daemon [_thread_in_vm, id=12265, stack(0x00007fb5cda77000,0x00007fb5cdb77000)]
+  0x00007fb5c8106800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=12264, stack(0x00007fb5cdb78000,0x00007fb5cdc78000)]
+  0x00007fb5c8104800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=12263, stack(0x00007fb5cdc78000,0x00007fb5cdd79000)]
+  0x00007fb5c80da000 JavaThread "Finalizer" daemon [_thread_blocked, id=12262, stack(0x00007fb5cdd79000,0x00007fb5cde7a000)]
+  0x00007fb5c80d5800 JavaThread "Reference Handler" daemon [_thread_blocked, id=12261, stack(0x00007fb5cde7a000,0x00007fb5cdf7b000)]
+  0x00007fb5c804b800 JavaThread "main" [_thread_blocked, id=12259, stack(0x00007fb5d21d1000,0x00007fb5d22d1000)]
+
+Other Threads:
+  0x00007fb5c80cb800 VMThread [stack: 0x00007fb5cdf7c000,0x00007fb5ce07c000] [id=12260]
+  0x00007fb5c811b800 WatcherThread [stack: 0x00007fb5cd875000,0x00007fb5cd975000] [id=12267]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fb5c8048320] CodeCache_lock - owner thread: 0x00007fb5c8115800
+[0x00007fb5c80499a0] Compile_lock - owner thread: 0x00007fb5c8115800
+[0x00007fb5c8049aa0] MethodCompileQueue_lock - owner thread: 0x00007fb5c8115800
+
+heap address: 0x00000000c0000000, size: 1024 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ def new generation   total 14208K, used 13612K [0x00000000c0000000, 0x00000000c0f60000, 0x00000000d5550000)
+  eden space 12672K,  97% used [0x00000000c0000000, 0x00000000c0c057f0, 0x00000000c0c60000)
+  from space 1536K,  84% used [0x00000000c0c60000, 0x00000000c0da58e8, 0x00000000c0de0000)
+  to   space 1536K,   0% used [0x00000000c0de0000, 0x00000000c0de0000, 0x00000000c0f60000)
+ tenured generation   total 31284K, used 27223K [0x00000000d5550000, 0x00000000d73dd000, 0x0000000100000000)
+   the space 31284K,  87% used [0x00000000d5550000, 0x00000000d6fe5f08, 0x00000000d6fe6000, 0x00000000d73dd000)
+ Metaspace       used 44872K, capacity 45714K, committed 45952K, reserved 1089536K
+  class space    used 5891K, capacity 6152K, committed 6272K, reserved 1048576K
+
+Card table byte_map: [0x00007fb5cec68000,0x00007fb5cee69000] byte_map_base: 0x00007fb5ce668000
+
+Polling page: 0x00007fb5d22dd000
+
+CodeCache: size=245760Kb used=14522Kb max_used=14522Kb free=231237Kb
+ bounds [0x00007fb5b9000000, 0x00007fb5b9e40000, 0x00007fb5c8000000]
+ total_blobs=5534 nmethods=4786 adapters=660
+ compilation: enabled
+
+Compilation events (250 events):
+Event: 386.565 Thread 0x00007fb5c8115800 5152       3       org.codehaus.groovy.runtime.callsite.AbstractCallSite::<init> (35 bytes)
+Event: 386.565 Thread 0x00007fb5c8115800 nmethod 5152 0x00007fb5b9df0490 code [0x00007fb5b9df0600, 0x00007fb5b9df0a30]
+Event: 386.565 Thread 0x00007fb5c8115800 5148       3       java.lang.String::replaceAll (13 bytes)
+Event: 386.565 Thread 0x00007fb5c8115800 nmethod 5148 0x00007fb5b9df0b90 code [0x00007fb5b9df0d20, 0x00007fb5b9df10e8]
+Event: 386.565 Thread 0x00007fb5c8115800 5150       3       org.codehaus.groovy.reflection.stdclasses.CachedSAMClass::isAssignableFrom (30 bytes)
+Event: 386.566 Thread 0x00007fb5c8115800 nmethod 5150 0x00007fb5b9df1250 code [0x00007fb5b9df13e0, 0x00007fb5b9df18b8]
+Event: 386.566 Thread 0x00007fb5c8115800 5149       3       org.gradle.groovy.scripts.TextResourceScriptSource::getClassName (20 bytes)
+Event: 386.566 Thread 0x00007fb5c8115800 nmethod 5149 0x00007fb5b9df19d0 code [0x00007fb5b9df1b40, 0x00007fb5b9df1d28]
+Event: 386.566 Thread 0x00007fb5c8115800 5151       3       org.gradle.groovy.scripts.DelegatingScriptSource::getClassName (10 bytes)
+Event: 386.566 Thread 0x00007fb5c8115800 nmethod 5151 0x00007fb5b9df1dd0 code [0x00007fb5b9df1f40, 0x00007fb5b9df2168]
+Event: 386.574 Thread 0x00007fb5c8115800 5157       2       com.google.common.collect.RegularImmutableSet::contains (48 bytes)
+Event: 386.574 Thread 0x00007fb5c8115800 nmethod 5157 0x00007fb5b9df2210 code [0x00007fb5b9df23a0, 0x00007fb5b9df2658]
+Event: 386.574 Thread 0x00007fb5c8115800 5162       3       org.gradle.model.internal.registry.RuleBindings$NodeAtStateIndex::get (20 bytes)
+Event: 386.575 Thread 0x00007fb5c8115800 nmethod 5162 0x00007fb5b9df27d0 code [0x00007fb5b9df29c0, 0x00007fb5b9df31b8]
+Event: 386.575 Thread 0x00007fb5c8115800 5159       3       org.gradle.model.internal.registry.NodeAtState::hashCode (16 bytes)
+Event: 386.575 Thread 0x00007fb5c8115800 nmethod 5159 0x00007fb5b9df35d0 code [0x00007fb5b9df3760, 0x00007fb5b9df3b78]
+Event: 386.575 Thread 0x00007fb5c8115800 5155       3       org.gradle.model.internal.core.ModelNode$State::isAtLeast (17 bytes)
+Event: 386.575 Thread 0x00007fb5c8115800 nmethod 5155 0x00007fb5b9df3d10 code [0x00007fb5b9df3e80, 0x00007fb5b9df4150]
+Event: 386.575 Thread 0x00007fb5c8115800 5158       3       java.util.ArrayDeque::<init> (14 bytes)
+Event: 386.576 Thread 0x00007fb5c8115800 nmethod 5158 0x00007fb5b9df4210 code [0x00007fb5b9df4380, 0x00007fb5b9df4630]
+Event: 386.576 Thread 0x00007fb5c8115800 5156       1       org.gradle.internal.graph.CachingDirectedGraphWalker$NodeDetails::access$300 (5 bytes)
+Event: 386.576 Thread 0x00007fb5c8115800 nmethod 5156 0x00007fb5b9df4750 code [0x00007fb5b9df48a0, 0x00007fb5b9df4990]
+Event: 386.576 Thread 0x00007fb5c8115800 5163       1       org.gradle.model.internal.registry.DefaultModelRegistry$MakeKnown::doIsAchieved (2 bytes)
+Event: 386.576 Thread 0x00007fb5c8115800 nmethod 5163 0x00007fb5b9df4a10 code [0x00007fb5b9df4b60, 0x00007fb5b9df4c70]
+Event: 386.576 Thread 0x00007fb5c8115800 5164       1       org.gradle.model.internal.registry.DefaultModelRegistry$ModelGoal::calculateDependencies (2 bytes)
+Event: 386.576 Thread 0x00007fb5c8115800 nmethod 5164 0x00007fb5b9df4cd0 code [0x00007fb5b9df4e20, 0x00007fb5b9df4f30]
+Event: 386.576 Thread 0x00007fb5c8115800 5165       3       org.gradle.internal.hash.Hashing$MessageDigestHasher::hash (18 bytes)
+Event: 386.576 Thread 0x00007fb5c8115800 nmethod 5165 0x00007fb5b9df4f90 code [0x00007fb5b9df5120, 0x00007fb5b9df55a8]
+Event: 386.576 Thread 0x00007fb5c8115800 5166       3       org.gradle.internal.hash.HashCode::fromBytesNoCopy (9 bytes)
+Event: 386.576 Thread 0x00007fb5c8115800 nmethod 5166 0x00007fb5b9df5790 code [0x00007fb5b9df5900, 0x00007fb5b9df5b50]
+Event: 386.576 Thread 0x00007fb5c8115800 5167       3       org.gradle.internal.hash.HashCode::<init> (10 bytes)
+Event: 386.576 Thread 0x00007fb5c8115800 nmethod 5167 0x00007fb5b9df5c50 code [0x00007fb5b9df5dc0, 0x00007fb5b9df5f90]
+Event: 386.576 Thread 0x00007fb5c8115800 5160       1       org.gradle.execution.taskgraph.TaskInfo::getTask (5 bytes)
+Event: 386.576 Thread 0x00007fb5c8115800 nmethod 5160 0x00007fb5b9df6050 code [0x00007fb5b9df61a0, 0x00007fb5b9df62b0]
+Event: 386.576 Thread 0x00007fb5c8115800 5154       3       org.gradle.internal.event.DefaultListenerManager$EventBroadcast::buildAllWithLogger (57 bytes)
+Event: 386.577 Thread 0x00007fb5c8115800 nmethod 5154 0x00007fb5b9df6310 code [0x00007fb5b9df6560, 0x00007fb5b9df72a8]
+Event: 386.577 Thread 0x00007fb5c8115800 5153       3       java.util.concurrent.atomic.AtomicBoolean::set (14 bytes)
+Event: 386.577 Thread 0x00007fb5c8115800 nmethod 5153 0x00007fb5b9df7a10 code [0x00007fb5b9df7b80, 0x00007fb5b9df7d30]
+Event: 386.577 Thread 0x00007fb5c8115800 5161       1       org.gradle.api.internal.tasks.CachingTaskDependencyResolveContext::access$100 (5 bytes)
+Event: 386.577 Thread 0x00007fb5c8115800 nmethod 5161 0x00007fb5b9df7d90 code [0x00007fb5b9df7ee0, 0x00007fb5b9df7fd0]
+Event: 386.587 Thread 0x00007fb5c8115800 5168       3       java.util.Properties::load0 (250 bytes)
+Event: 386.588 Thread 0x00007fb5c8115800 nmethod 5168 0x00007fb5b9df8050 code [0x00007fb5b9df8240, 0x00007fb5b9df8c18]
+Event: 386.588 Thread 0x00007fb5c8115800 5169       3       com.google.common.collect.ImmutableList::construct (8 bytes)
+Event: 386.588 Thread 0x00007fb5c8115800 nmethod 5169 0x00007fb5b9df9050 code [0x00007fb5b9df9200, 0x00007fb5b9df9578]
+Event: 386.600 Thread 0x00007fb5c8115800 5178       3       java.util.Arrays::hashCode (56 bytes)
+Event: 386.600 Thread 0x00007fb5c8115800 nmethod 5178 0x00007fb5b9df9790 code [0x00007fb5b9df9920, 0x00007fb5b9df9ca8]
+Event: 386.600 Thread 0x00007fb5c8115800 5181       2       com.google.common.cache.LocalCache$Segment::drainRecencyQueue (45 bytes)
+Event: 386.600 Thread 0x00007fb5c8115800 nmethod 5181 0x00007fb5b9df9e10 code [0x00007fb5b9df9fa0, 0x00007fb5b9dfa2a8]
+Event: 386.600 Thread 0x00007fb5c8115800 5176   !   3       com.google.common.cache.LocalCache$Segment::get (210 bytes)
+Event: 386.603 Thread 0x00007fb5c8115800 nmethod 5176 0x00007fb5b9dfa410 code [0x00007fb5b9dfa8e0, 0x00007fb5b9dfd758]
+Event: 386.603 Thread 0x00007fb5c8115800 5179       3       java.util.concurrent.locks.AbstractQueuedSynchronizer::doReleaseShared (79 bytes)
+Event: 386.604 Thread 0x00007fb5c8115800 nmethod 5179 0x00007fb5b9dff810 code [0x00007fb5b9dff9c0, 0x00007fb5b9dfff88]
+Event: 386.604 Thread 0x00007fb5c8115800 5180       3       org.gradle.api.specs.NotSpec::isSatisfiedBy (19 bytes)
+Event: 386.604 Thread 0x00007fb5c8115800 nmethod 5180 0x00007fb5b9e00150 code [0x00007fb5b9e002c0, 0x00007fb5b9e00528]
+Event: 386.604 Thread 0x00007fb5c8115800 5177   !   3       org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess::incrementLockCount (193 bytes)
+Event: 386.605 Thread 0x00007fb5c8115800 nmethod 5177 0x00007fb5b9e00610 code [0x00007fb5b9e00920, 0x00007fb5b9e01f08]
+Event: 386.605 Thread 0x00007fb5c8115800 5186       1       java.util.concurrent.atomic.AtomicInteger::incrementAndGet (14 bytes)
+Event: 386.605 Thread 0x00007fb5c8115800 nmethod 5186 0x00007fb5b9e02d10 code [0x00007fb5b9e02e60, 0x00007fb5b9e02f70]
+Event: 386.605 Thread 0x00007fb5c8115800 5175       2       com.google.common.cache.LocalCache$Segment::postReadCleanup (18 bytes)
+Event: 386.606 Thread 0x00007fb5c8115800 nmethod 5175 0x00007fb5b9e02fd0 code [0x00007fb5b9e03160, 0x00007fb5b9e033a8]
+Event: 386.606 Thread 0x00007fb5c8115800 5184       3       com.google.common.cache.LocalCache$Segment::recordRead (29 bytes)
+Event: 386.606 Thread 0x00007fb5c8115800 nmethod 5184 0x00007fb5b9e03590 code [0x00007fb5b9e03720, 0x00007fb5b9e03b78]
+Event: 386.606 Thread 0x00007fb5c8115800 5185       3       com.google.common.cache.LocalCache$Segment::scheduleRefresh (66 bytes)
+Event: 386.606 Thread 0x00007fb5c8115800 nmethod 5185 0x00007fb5b9e03d50 code [0x00007fb5b9e03f00, 0x00007fb5b9e04538]
+Event: 386.606 Thread 0x00007fb5c8115800 5182       3       com.google.common.cache.LocalCache$Segment::getLiveValue (61 bytes)
+Event: 386.608 Thread 0x00007fb5c8115800 nmethod 5182 0x00007fb5b9e04790 code [0x00007fb5b9e04ae0, 0x00007fb5b9e06718]
+Event: 386.608 Thread 0x00007fb5c8115800 5183       3       com.google.common.base.Objects::equal (23 bytes)
+Event: 386.608 Thread 0x00007fb5c8115800 nmethod 5183 0x00007fb5b9e074d0 code [0x00007fb5b9e07640, 0x00007fb5b9e07908]
+Event: 386.608 Thread 0x00007fb5c8115800 5170       1       org.gradle.api.internal.tasks.properties.DefaultPropertyMetadataStore::access$700 (5 bytes)
+Event: 386.608 Thread 0x00007fb5c8115800 nmethod 5170 0x00007fb5b9e079d0 code [0x00007fb5b9e07b20, 0x00007fb5b9e07c10]
+Event: 386.608 Thread 0x00007fb5c8115800 5171       1       org.gradle.api.internal.tasks.properties.DefaultPropertyMetadataStore$DefaultPropertyMetadata::getFieldName (5 bytes)
+Event: 386.608 Thread 0x00007fb5c8115800 nmethod 5171 0x00007fb5b9e07c90 code [0x00007fb5b9e07de0, 0x00007fb5b9e07ef0]
+Event: 386.608 Thread 0x00007fb5c8115800 5172       1       org.gradle.api.internal.tasks.properties.BeanNode::getBean (5 bytes)
+Event: 386.608 Thread 0x00007fb5c8115800 nmethod 5172 0x00007fb5b9e07f50 code [0x00007fb5b9e080a0, 0x00007fb5b9e081b0]
+Event: 386.608 Thread 0x00007fb5c8115800 5173       1       org.gradle.api.internal.tasks.properties.DefaultPropertyMetadataStore$DefaultPropertyMetadata::getAnnotations (5 bytes)
+Event: 386.608 Thread 0x00007fb5c8115800 nmethod 5173 0x00007fb5b9e08210 code [0x00007fb5b9e08360, 0x00007fb5b9e08470]
+Event: 386.608 Thread 0x00007fb5c8115800 5174       1       org.gradle.api.internal.tasks.properties.DefaultPropertyMetadataStore$DefaultPropertyMetadata::getMethod (5 bytes)
+Event: 386.608 Thread 0x00007fb5c8115800 nmethod 5174 0x00007fb5b9e084d0 code [0x00007fb5b9e08620, 0x00007fb5b9e08730]
+Event: 386.639 Thread 0x00007fb5c8115800 5191   !   3       com.google.common.cache.LocalCache$Segment::runLockedCleanup (39 bytes)
+Event: 386.640 Thread 0x00007fb5c8115800 nmethod 5191 0x00007fb5b9e08790 code [0x00007fb5b9e089a0, 0x00007fb5b9e09458]
+Event: 386.640 Thread 0x00007fb5c8115800 5187       3       com.google.common.cache.LocalCache$AccessQueue::contains (23 bytes)
+Event: 386.640 Thread 0x00007fb5c8115800 nmethod 5187 0x00007fb5b9e09910 code [0x00007fb5b9e09aa0, 0x00007fb5b9e09e28]
+Event: 386.640 Thread 0x00007fb5c8115800 5188       3       com.google.common.cache.CacheBuilder$1::recordHits (1 bytes)
+Event: 386.640 Thread 0x00007fb5c8115800 nmethod 5188 0x00007fb5b9e09f10 code [0x00007fb5b9e0a060, 0x00007fb5b9e0a1b0]
+Event: 386.640 Thread 0x00007fb5c8115800 5189       3       org.gradle.api.tasks.util.internal.CachingPatternSpecFactory$CacheKey::equals (63 bytes)
+Event: 386.641 Thread 0x00007fb5c8115800 nmethod 5189 0x00007fb5b9e0a250 code [0x00007fb5b9e0a420, 0x00007fb5b9e0ac18]
+Event: 386.641 Thread 0x00007fb5c8115800 5190       3       com.google.common.cache.AbstractCache$SimpleStatsCounter::recordHits (12 bytes)
+Event: 386.641 Thread 0x00007fb5c8115800 nmethod 5190 0x00007fb5b9e0ae50 code [0x00007fb5b9e0afc0, 0x00007fb5b9e0b188]
+Event: 386.647 Thread 0x00007fb5c8115800 5192       1       com.google.common.cache.CacheBuilder$1::recordHits (1 bytes)
+Event: 386.647 Thread 0x00007fb5c8115800 nmethod 5192 0x00007fb5b9e0b290 code [0x00007fb5b9e0b3e0, 0x00007fb5b9e0b4f0]
+Event: 386.664 Thread 0x00007fb5c8115800 5194       2       com.google.common.cache.LocalCache$Segment::expireEntries (113 bytes)
+Event: 386.664 Thread 0x00007fb5c8106800 nmethod 5074 0x00007fb5b9e12490 code [0x00007fb5b9e12a20, 0x00007fb5b9e16c20]
+Event: 386.664 Thread 0x00007fb5c8106800 5193       4       com.google.common.base.Equivalence$Equals::doEquivalent (6 bytes)
+Event: 386.665 Thread 0x00007fb5c8106800 nmethod 5193 0x00007fb5b92a7c50 code [0x00007fb5b92a7da0, 0x00007fb5b92a7e18]
+Event: 386.665 Thread 0x00007fb5c8106800 5079       4       java.util.HashMap::<init> (11 bytes)
+Event: 386.665 Thread 0x00007fb5c8106800 nmethod 5079 0x00007fb5b9178c90 code [0x00007fb5b9178de0, 0x00007fb5b9178e38]
+Event: 386.665 Thread 0x00007fb5c8106800 5107       4       groovyjarjarantlr.CharScanner::LA (35 bytes)
+Event: 386.676 Thread 0x00007fb5c8115800 nmethod 5194 0x00007fb5b9e11890 code [0x00007fb5b9e11ac0, 0x00007fb5b9e12088]
+Event: 386.678 Thread 0x00007fb5c8106800 nmethod 5107 0x00007fb5b9e0d250 code [0x00007fb5b9e0d440, 0x00007fb5b9e0db60]
+Event: 386.678 Thread 0x00007fb5c8106800 5195       4       java.util.concurrent.locks.ReentrantReadWriteLock$Sync::tryAcquireShared (177 bytes)
+Event: 386.680 Thread 0x00007fb5c8106800 nmethod 5195 0x00007fb5b9e0b7d0 code [0x00007fb5b9e0b940, 0x00007fb5b9e0bb58]
+Event: 386.680 Thread 0x00007fb5c8106800 5143       4       java.util.HashMap$ValueIterator::next (8 bytes)
+Event: 386.683 Thread 0x00007fb5c8106800 nmethod 5143 0x00007fb5b9e0fa90 code [0x00007fb5b9e0fbe0, 0x00007fb5b9e0fdf8]
+Event: 386.683 Thread 0x00007fb5c8106800 5119       4       org.gradle.internal.hash.Hashing$MessageDigestHasher::checkNotDone (18 bytes)
+Event: 386.684 Thread 0x00007fb5c8106800 nmethod 5119 0x00007fb5b989c290 code [0x00007fb5b989c3e0, 0x00007fb5b989c458]
+Event: 386.684 Thread 0x00007fb5c8106800 5197       4       java.util.ArrayDeque$DeqIterator::next (89 bytes)
+Event: 386.685 Thread 0x00007fb5c8106800 nmethod 5197 0x00007fb5b9e0f6d0 code [0x00007fb5b9e0f820, 0x00007fb5b9e0f958]
+Event: 386.685 Thread 0x00007fb5c8106800 5198       4       sun.nio.fs.UnixFileKey::equals (51 bytes)
+Event: 386.685 Thread 0x00007fb5c8106800 nmethod 5198 0x00007fb5b9e0f310 code [0x00007fb5b9e0f460, 0x00007fb5b9e0f598]
+Event: 386.685 Thread 0x00007fb5c8106800 5199   !   4       org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess::decrementLockCount (86 bytes)
+Event: 386.692 Thread 0x00007fb5c8106800 nmethod 5199 0x00007fb5b9e0e6d0 code [0x00007fb5b9e0e880, 0x00007fb5b9e0ecf8]
+Event: 386.692 Thread 0x00007fb5c8106800 5201       4       com.google.common.collect.AbstractIndexedListIterator::hasNext (17 bytes)
+Event: 386.692 Thread 0x00007fb5c8106800 nmethod 5201 0x00007fb5b9918650 code [0x00007fb5b99187a0, 0x00007fb5b9918818]
+Event: 386.692 Thread 0x00007fb5c8106800 5200       4       com.google.common.collect.ObjectArrays::checkElementNotNull (33 bytes)
+Event: 386.692 Thread 0x00007fb5c8106800 nmethod 5200 0x00007fb5b9cc3d90 code [0x00007fb5b9cc3ee0, 0x00007fb5b9cc3f38]
+Event: 386.692 Thread 0x00007fb5c8106800 5196       4       org.gradle.cache.internal.CrossProcessSynchronizingCache::get (19 bytes)
+Event: 386.693 Thread 0x00007fb5c8115800 5202       3       org.gradle.api.internal.OverlappingOutputs::createdSincePreviousExecution (10 bytes)
+Event: 386.693 Thread 0x00007fb5c8115800 nmethod 5202 0x00007fb5b9e0ced0 code [0x00007fb5b9e0d040, 0x00007fb5b9e0d1d0]
+Event: 386.693 Thread 0x00007fb5c8115800 5203       3       org.gradle.api.internal.OverlappingOutputs::changedSincePreviousExecution (26 bytes)
+Event: 386.693 Thread 0x00007fb5c8115800 nmethod 5203 0x00007fb5b9e0c810 code [0x00007fb5b9e0c9a0, 0x00007fb5b9e0cd88]
+Event: 386.693 Thread 0x00007fb5c8115800 5204       3       org.gradle.api.internal.changedetection.state.FileHashSnapshot::getType (4 bytes)
+Event: 386.693 Thread 0x00007fb5c8115800 nmethod 5204 0x00007fb5b9e0c4d0 code [0x00007fb5b9e0c640, 0x00007fb5b9e0c790]
+Event: 386.693 Thread 0x00007fb5c8115800 5205       3       org.gradle.api.internal.changedetection.state.FileHashSnapshot::isContentUpToDate (26 bytes)
+Event: 386.694 Thread 0x00007fb5c8115800 nmethod 5205 0x00007fb5b9e11090 code [0x00007fb5b9e11220, 0x00007fb5b9e11728]
+Event: 386.694 Thread 0x00007fb5c8115800 5206       3       org.gradle.api.internal.changedetection.state.DirContentSnapshot::getType (4 bytes)
+Event: 386.694 Thread 0x00007fb5c8115800 nmethod 5206 0x00007fb5b9e0c190 code [0x00007fb5b9e0c300, 0x00007fb5b9e0c450]
+Event: 386.694 Thread 0x00007fb5c8115800 5207       3       org.gradle.api.internal.changedetection.state.DirContentSnapshot::isContentUpToDate (5 bytes)
+Event: 386.694 Thread 0x00007fb5c8115800 nmethod 5207 0x00007fb5b9e0bd50 code [0x00007fb5b9e0bec0, 0x00007fb5b9e0c110]
+Event: 386.702 Thread 0x00007fb5c8115800 5210       3       java.util.LinkedHashMap$LinkedEntryIterator::next (5 bytes)
+Event: 386.702 Thread 0x00007fb5c8115800 nmethod 5210 0x00007fb5b9e10b90 code [0x00007fb5b9e10d00, 0x00007fb5b9e10fe8]
+Event: 386.702 Thread 0x00007fb5c8115800 5209       3       com.google.common.collect.UnmodifiableListIterator::<init> (5 bytes)
+Event: 386.702 Thread 0x00007fb5c8115800 nmethod 5209 0x00007fb5b9e10710 code [0x00007fb5b9e10880, 0x00007fb5b9e10a90]
+Event: 386.702 Thread 0x00007fb5c8115800 5208       3       com.google.common.collect.AbstractIndexedListIterator::<init> (21 bytes)
+Event: 386.702 Thread 0x00007fb5c8115800 nmethod 5208 0x00007fb5b9e1c790 code [0x00007fb5b9e1c940, 0x00007fb5b9e1cdf8]
+Event: 386.707 Thread 0x00007fb5c8115800 5212       3       com.google.common.collect.RegularImmutableMap::get (60 bytes)
+Event: 386.708 Thread 0x00007fb5c8115800 nmethod 5212 0x00007fb5b9e1bc10 code [0x00007fb5b9e1bde0, 0x00007fb5b9e1c508]
+Event: 386.708 Thread 0x00007fb5c8115800 5211       3       com.google.common.collect.ImmutableSet::of (4 bytes)
+Event: 386.708 Thread 0x00007fb5c8115800 nmethod 5211 0x00007fb5b9e1b910 code [0x00007fb5b9e1ba60, 0x00007fb5b9e1bb90]
+Event: 386.708 Thread 0x00007fb5c8115800 5213       3       java.nio.ByteBuffer::wrap (8 bytes)
+Event: 386.708 Thread 0x00007fb5c8115800 nmethod 5213 0x00007fb5b9e0ff50 code [0x00007fb5b9e100e0, 0x00007fb5b9e10458]
+Event: 386.711 Thread 0x00007fb5c8115800 5216       3       java.lang.String::regionMatches (91 bytes)
+Event: 386.711 Thread 0x00007fb5c8115800 nmethod 5216 0x00007fb5b9e1d090 code [0x00007fb5b9e1d220, 0x00007fb5b9e1d5d0]
+Event: 386.711 Thread 0x00007fb5c8115800 5217       3       groovy.lang.MetaClassImpl::getVersion (11 bytes)
+Event: 386.711 Thread 0x00007fb5c8115800 nmethod 5217 0x00007fb5b9e1d790 code [0x00007fb5b9e1d900, 0x00007fb5b9e1db70]
+Event: 386.711 Thread 0x00007fb5c8115800 5215       3       java.util.TimSort::sort (229 bytes)
+Event: 386.712 Thread 0x00007fb5c8115800 nmethod 5215 0x00007fb5b9e1dc90 code [0x00007fb5b9e1dea0, 0x00007fb5b9e1e578]
+Event: 386.712 Thread 0x00007fb5c8115800 5219       3       com.google.common.io.CountingOutputStream::write (22 bytes)
+Event: 386.712 Thread 0x00007fb5c8115800 nmethod 5219 0x00007fb5b9e1ea90 code [0x00007fb5b9e1ec00, 0x00007fb5b9e1ee48]
+Event: 386.759 Thread 0x00007fb5c8106800 nmethod 5196 0x00007fb5b9e240d0 code [0x00007fb5b9e245a0, 0x00007fb5b9e26968]
+Event: 386.759 Thread 0x00007fb5c8106800 5214       4       java.io.DataInputStream::readFully (63 bytes)
+Event: 386.760 Thread 0x00007fb5c8106800 nmethod 5214 0x00007fb5b9e1b510 code [0x00007fb5b9e1b660, 0x00007fb5b9e1b778]
+Event: 386.760 Thread 0x00007fb5c8106800 5218       4       org.codehaus.groovy.util.SingleKeyHashMap::get (67 bytes)
+Event: 386.765 Thread 0x00007fb5c8106800 nmethod 5218 0x00007fb5b9e20810 code [0x00007fb5b9e209a0, 0x00007fb5b9e20df8]
+Event: 387.439 Thread 0x00007fb5c8115800 5220   !   3       java.io.PrintStream::write (66 bytes)
+Event: 387.439 Thread 0x00007fb5c8115800 nmethod 5220 0x00007fb5b9e1fad0 code [0x00007fb5b9e1fca0, 0x00007fb5b9e20458]
+Event: 390.877 Thread 0x00007fb5c8115800 5221       1       org.gradle.launcher.daemon.server.health.DaemonHealthStats::getGcMonitor (5 bytes)
+Event: 390.877 Thread 0x00007fb5c8115800 nmethod 5221 0x00007fb5b9e1f810 code [0x00007fb5b9e1f960, 0x00007fb5b9e1fa70]
+Event: 399.254 Thread 0x00007fb5c8115800 5222       3       org.gradle.internal.io.LinePerThreadBufferingOutputStream::getStream (11 bytes)
+Event: 399.254 Thread 0x00007fb5c8115800 nmethod 5222 0x00007fb5b9e1f2d0 code [0x00007fb5b9e1f440, 0x00007fb5b9e1f748]
+Event: 399.254 Thread 0x00007fb5c8115800 5223       3       java.io.FilterOutputStream::write (9 bytes)
+Event: 399.255 Thread 0x00007fb5c8115800 nmethod 5223 0x00007fb5b9e23c90 code [0x00007fb5b9e23e00, 0x00007fb5b9e24028]
+Event: 400.878 Thread 0x00007fb5c8115800 5224   !   3       java.io.RandomAccessFile::close (62 bytes)
+Event: 400.878 Thread 0x00007fb5c8115800 nmethod 5224 0x00007fb5b9e23290 code [0x00007fb5b9e23440, 0x00007fb5b9e23ab8]
+Event: 401.356 Thread 0x00007fb5c8115800 5225       3       org.gradle.internal.io.LinePerThreadBufferingOutputStream::write (9 bytes)
+Event: 401.356 Thread 0x00007fb5c8115800 nmethod 5225 0x00007fb5b9e22b50 code [0x00007fb5b9e22ce0, 0x00007fb5b9e230f8]
+Event: 401.356 Thread 0x00007fb5c8115800 5226       3       org.gradle.internal.io.LineBufferingOutputStream::write (59 bytes)
+Event: 401.357 Thread 0x00007fb5c8115800 nmethod 5226 0x00007fb5b9e21190 code [0x00007fb5b9e21400, 0x00007fb5b9e22318]
+Event: 401.357 Thread 0x00007fb5c8115800 5227       3       org.gradle.internal.io.StreamByteBuffer$StreamByteBufferOutputStream::write (22 bytes)
+Event: 401.358 Thread 0x00007fb5c8115800 nmethod 5227 0x00007fb5b9e2bad0 code [0x00007fb5b9e2bc60, 0x00007fb5b9e2bf28]
+Event: 401.358 Thread 0x00007fb5c8115800 5228       3       org.gradle.internal.io.StreamByteBuffer$StreamByteBufferChunk::write (32 bytes)
+Event: 401.358 Thread 0x00007fb5c8115800 nmethod 5228 0x00007fb5b9e2c110 code [0x00007fb5b9e2c280, 0x00007fb5b9e2c450]
+Event: 401.358 Thread 0x00007fb5c8115800 5229       3       org.gradle.internal.io.LineBufferingOutputStream::endsWithLineSeparator (27 bytes)
+Event: 401.358 Thread 0x00007fb5c8115800 nmethod 5229 0x00007fb5b9e2c550 code [0x00007fb5b9e2c6c0, 0x00007fb5b9e2c8b0]
+Event: 410.928 Thread 0x00007fb5c8115800 5230       3       java.util.concurrent.CopyOnWriteArraySet::add (9 bytes)
+Event: 410.929 Thread 0x00007fb5c8115800 nmethod 5230 0x00007fb5b9e2c950 code [0x00007fb5b9e2cae0, 0x00007fb5b9e2ce38]
+Event: 410.929 Thread 0x00007fb5c8115800 5231       3       java.util.concurrent.CopyOnWriteArrayList::addIfAbsent (27 bytes)
+Event: 410.929 Thread 0x00007fb5c8115800 nmethod 5231 0x00007fb5b9e2cf90 code [0x00007fb5b9e2d120, 0x00007fb5b9e2d3f8]
+Event: 431.353 Thread 0x00007fb5c8115800 5232       3       org.gradle.internal.serialize.AbstractDecoder::readBinary (16 bytes)
+Event: 432.440 Thread 0x00007fb5c8115800 nmethod 5232 0x00007fb5b9e2d4d0 code [0x00007fb5b9e2d660, 0x00007fb5b9e2dab8]
+Event: 432.552 Thread 0x00007fb5c8115800 5233       3       org.gradle.internal.serialize.AbstractDecoder::readBytes (9 bytes)
+Event: 433.070 Thread 0x00007fb5c8115800 nmethod 5233 0x00007fb5b9e2dbd0 code [0x00007fb5b9e2dd40, 0x00007fb5b9e2df68]
+Event: 451.124 Thread 0x00007fb5c8115800 5236       3       java.io.DataInputStream::<init> (30 bytes)
+Event: 453.492 Thread 0x00007fb5c8115800 nmethod 5236 0x00007fb5b9e2e050 code [0x00007fb5b9e2e1e0, 0x00007fb5b9e2e630]
+Event: 461.084 Thread 0x00007fb5c8115800 5237       3       com.google.common.collect.ImmutableList::iterator (5 bytes)
+Event: 461.574 Thread 0x00007fb5c8115800 nmethod 5237 0x00007fb5b9e2e7d0 code [0x00007fb5b9e2e940, 0x00007fb5b9e2eb48]
+Event: 461.587 Thread 0x00007fb5c8115800 5238       3       org.gradle.cache.internal.filelock.LockOptionsBuilder::<init> (15 bytes)
+Event: 461.588 Thread 0x00007fb5c8115800 nmethod 5238 0x00007fb5b9e2ebd0 code [0x00007fb5b9e2ed40, 0x00007fb5b9e2ef10]
+Event: 461.588 Thread 0x00007fb5c8115800 5239       3       java.util.Random::nextLong (19 bytes)
+Event: 461.588 Thread 0x00007fb5c8115800 nmethod 5239 0x00007fb5b9e2efd0 code [0x00007fb5b9e2f140, 0x00007fb5b9e2f438]
+Event: 473.745 Thread 0x00007fb5c8115800 5240       3       com.google.common.collect.TransformedIterator::next (14 bytes)
+Event: 476.532 Thread 0x00007fb5c8115800 nmethod 5240 0x00007fb5b9e2f4d0 code [0x00007fb5b9e2f660, 0x00007fb5b9e2f938]
+Event: 481.439 Thread 0x00007fb5c8115800 5242       1       org.gradle.launcher.daemon.server.Daemon::getDaemonRegistry (5 bytes)
+Event: 481.439 Thread 0x00007fb5c8106800 5241       4       java.lang.System::getProperty (26 bytes)
+Event: 482.741 Thread 0x00007fb5c8115800 nmethod 5242 0x00007fb5b9e1f010 code [0x00007fb5b9e1f160, 0x00007fb5b9e1f270]
+Event: 482.823 Thread 0x00007fb5c8115800 5243       3       org.gradle.internal.logging.slf4j.OutputEventListenerBackedLogger::debug (19 bytes)
+Event: 484.911 Thread 0x00007fb5c8115800 nmethod 5243 0x00007fb5b9e2fa10 code [0x00007fb5b9e2fbe0, 0x00007fb5b9e304f8]
+Event: 491.243 Thread 0x00007fb5c8115800 5245       3       org.gradle.cache.internal.AbstractFileAccess::<init> (5 bytes)
+Event: 491.659 Thread 0x00007fb5c8115800 nmethod 5245 0x00007fb5b9e30910 code [0x00007fb5b9e30a80, 0x00007fb5b9e30c30]
+Event: 496.258 Thread 0x00007fb5c8106800 nmethod 5241 0x00007fb5b9e341d0 code [0x00007fb5b9e34360, 0x00007fb5b9e34c58]
+Event: 511.036 Thread 0x00007fb5c8115800 5246       3       java.io.RandomAccessFile::read (8 bytes)
+Event: 512.198 Thread 0x00007fb5c8115800 nmethod 5246 0x00007fb5b9e33a90 code [0x00007fb5b9e33c00, 0x00007fb5b9e33d88]
+Event: 512.218 Thread 0x00007fb5c8115800 5248       3       java.util.concurrent.ThreadPoolExecutor::workerCountOf (5 bytes)
+Event: 517.307 Thread 0x00007fb5c8115800 nmethod 5248 0x00007fb5b9e33790 code [0x00007fb5b9e338e0, 0x00007fb5b9e33a10]
+Event: 522.139 Thread 0x00007fb5c8115800 5249       3       java.util.concurrent.CopyOnWriteArrayList::remove (30 bytes)
+Event: 524.084 Thread 0x00007fb5c8115800 nmethod 5249 0x00007fb5b9e33210 code [0x00007fb5b9e333a0, 0x00007fb5b9e33678]
+Event: 524.227 Thread 0x00007fb5c8115800 5250       3       java.util.concurrent.CopyOnWriteArraySet::remove (9 bytes)
+Event: 526.579 Thread 0x00007fb5c8115800 nmethod 5250 0x00007fb5b9e32bd0 code [0x00007fb5b9e32d60, 0x00007fb5b9e330b8]
+Event: 541.075 Thread 0x00007fb5c8115800 5251   !   3       org.gradle.internal.FileUtils::canonicalize (15 bytes)
+Event: 555.369 Thread 0x00007fb5c8115800 nmethod 5251 0x00007fb5b9e31750 code [0x00007fb5b9e319a0, 0x00007fb5b9e324a8]
+Event: 581.190 Thread 0x00007fb5c8115800 5252       3       com.google.common.collect.Collections2::cast (5 bytes)
+Event: 583.157 Thread 0x00007fb5c8115800 nmethod 5252 0x00007fb5b9e31310 code [0x00007fb5b9e31480, 0x00007fb5b9e316b0]
+Event: 583.367 Thread 0x00007fb5c8115800 5253       3       com.google.common.collect.TransformedIterator::hasNext (10 bytes)
+Event: 585.456 Thread 0x00007fb5c8115800 nmethod 5253 0x00007fb5b9e30ed0 code [0x00007fb5b9e31040, 0x00007fb5b9e31268]
+Event: 601.459 Thread 0x00007fb5c8115800 5254       1       org.gradle.launcher.daemon.server.health.gc.GarbageCollectorMonitoringStrategy::getTenuredPoolName (5 bytes)
+Event: 602.958 Thread 0x00007fb5c8115800 nmethod 5254 0x00007fb5b9e35210 code [0x00007fb5b9e35360, 0x00007fb5b9e35470]
+Event: 611.527 Thread 0x00007fb5c8115800 5255       3       java.lang.Boolean::parseBoolean (19 bytes)
+Event: 615.389 Thread 0x00007fb5c8115800 nmethod 5255 0x00007fb5b9e354d0 code [0x00007fb5b9e35640, 0x00007fb5b9e358c8]
+Event: 621.977 Thread 0x00007fb5c8115800 5256       3       org.gradle.cache.internal.locklistener.DefaultFileLockContentionHandler::assertNotStopped (18 bytes)
+Event: 627.406 Thread 0x00007fb5c8115800 nmethod 5256 0x00007fb5b9e35990 code [0x00007fb5b9e35b00, 0x00007fb5b9e35d48]
+Event: 627.614 Thread 0x00007fb5c8115800 5257       3       java.io.RandomAccessFile::<init> (248 bytes)
+Event: 660.490 Thread 0x00007fb5c8115800 nmethod 5257 0x00007fb5b9e35e10 code [0x00007fb5b9e361e0, 0x00007fb5b9e38218]
+Event: 660.986 Thread 0x00007fb5c8115800 5262       3       org.gradle.internal.serialize.InputStreamBackedDecoder::readBytes (11 bytes)
+Event: 663.930 Thread 0x00007fb5c8115800 nmethod 5262 0x00007fb5b9e39210 code [0x00007fb5b9e39380, 0x00007fb5b9e39588]
+Event: 664.045 Thread 0x00007fb5c8115800 5260       3       java.util.concurrent.ThreadPoolExecutor::runStateAtLeast (11 bytes)
+Event: 665.415 Thread 0x00007fb5c8115800 nmethod 5260 0x00007fb5b9e39650 code [0x00007fb5b9e397c0, 0x00007fb5b9e39950]
+Event: 665.716 Thread 0x00007fb5c8115800 5259       1       org.gradle.launcher.daemon.context.DefaultDaemonContext::getPid (5 bytes)
+Event: 667.348 Thread 0x00007fb5c8115800 nmethod 5259 0x00007fb5b9e399d0 code [0x00007fb5b9e39b20, 0x00007fb5b9e39c30]
+Event: 671.216 Thread 0x00007fb5c8115800 5263       1       org.gradle.internal.concurrent.ManagedExecutorImpl::access$100 (5 bytes)
+Event: 673.638 Thread 0x00007fb5c8115800 nmethod 5263 0x00007fb5b9e39c90 code [0x00007fb5b9e39de0, 0x00007fb5b9e39ed0]
+Event: 673.909 Thread 0x00007fb5c8115800 5264       1       org.gradle.util.GradleVersion::getVersion (5 bytes)
+Event: 675.469 Thread 0x00007fb5c8115800 nmethod 5264 0x00007fb5b9e39f50 code [0x00007fb5b9e3a0a0, 0x00007fb5b9e3a1b0]
+Event: 675.545 Thread 0x00007fb5c8115800 5265       3       sun.nio.ch.NativeDispatcher::<init> (5 bytes)
+Event: 676.386 Thread 0x00007fb5c8115800 nmethod 5265 0x00007fb5b9e3a210 code [0x00007fb5b9e3a380, 0x00007fb5b9e3a530]
+Event: 685.079 Thread 0x00007fb5c8115800 5266       3       sun.nio.ch.FileChannelImpl::<init> (74 bytes)
+Event: 698.537 Thread 0x00007fb5c8115800 nmethod 5266 0x00007fb5b9e3a5d0 code [0x00007fb5b9e3a7a0, 0x00007fb5b9e3afb0]
+Event: 698.928 Thread 0x00007fb5c8115800 5268       3       sun.nio.ch.NativeThreadSet::<init> (17 bytes)
+Event: 703.070 Thread 0x00007fb5c8115800 nmethod 5268 0x00007fb5b9e3b490 code [0x00007fb5b9e3b600, 0x00007fb5b9e3b850]
+Event: 703.409 Thread 0x00007fb5c8115800 5267       3       java.nio.channels.FileChannel::<init> (5 bytes)
+Event: 707.436 Thread 0x00007fb5c8115800 nmethod 5267 0x00007fb5b9e3b910 code [0x00007fb5b9e3ba80, 0x00007fb5b9e3bd70]
+Event: 712.067 Thread 0x00007fb5c8115800 5269       3       java.net.DatagramSocket::getImpl (16 bytes)
+Event: 713.948 Thread 0x00007fb5c8115800 nmethod 5269 0x00007fb5b9e3be90 code [0x00007fb5b9e3c000, 0x00007fb5b9e3c248]
+Event: 714.126 Thread 0x00007fb5c8115800 5270   !   3       sun.nio.ch.FileChannelImpl::implCloseChannel (132 bytes)
+Event: 716.170 Thread 0x00007fb5c8115800 nmethod 5270 0x00007fb5b9e3c2d0 code [0x00007fb5b9e3c520, 0x00007fb5b9e3d528]
+Event: 721.088 Thread 0x00007fb5c8115800 5272   !   3       java.net.DatagramSocket::isClosed (19 bytes)
+Event: 730.602 Thread 0x00007fb5c8115800 nmethod 5272 0x00007fb5b9e3dad0 code [0x00007fb5b9e3dc40, 0x00007fb5b9e3df30]
+Event: 730.835 Thread 0x00007fb5c8115800 5274   !   3       sun.nio.ch.FileChannelImpl::isSharedFileLockTable (72 bytes)
+Event: 736.184 Thread 0x00007fb5c8115800 nmethod 5274 0x00007fb5b9e3e010 code [0x00007fb5b9e3e1c0, 0x00007fb5b9e3e918]
+Event: 736.232 Thread 0x00007fb5c8115800 5273       3       java.io.File::createNewFile (44 bytes)
+Event: 745.256 Thread 0x00007fb5c8115800 nmethod 5273 0x00007fb5b9e3eb90 code [0x00007fb5b9e3ed80, 0x00007fb5b9e3f5b8]
+Event: 752.033 Thread 0x00007fb5c8115800 5276   !   3       sun.nio.ch.SharedFileLockTable::removeAll (139 bytes)
+
+GC Heap History (176 events):
+Event: 0.125 GC heap before
+{Heap before GC invocations=0 (full 0):
+ def new generation   total 4928K, used 4416K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K, 100% used [0x00000000c0000000, 0x00000000c0450000, 0x00000000c0450000)
+  from space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+  to   space 512K,   0% used [0x00000000c04d0000, 0x00000000c04d0000, 0x00000000c0550000)
+ tenured generation   total 10944K, used 0K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,   0% used [0x00000000d5550000, 0x00000000d5550000, 0x00000000d5550200, 0x00000000d6000000)
+ Metaspace       used 3690K, capacity 4664K, committed 4864K, reserved 1056768K
+  class space    used 354K, capacity 424K, committed 512K, reserved 1048576K
+Event: 0.126 GC heap after
+Heap after GC invocations=1 (full 0):
+ def new generation   total 4928K, used 511K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000c0450000)
+  from space 512K,  99% used [0x00000000c04d0000, 0x00000000c054fff8, 0x00000000c0550000)
+  to   space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+ tenured generation   total 10944K, used 108K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,   0% used [0x00000000d5550000, 0x00000000d556b100, 0x00000000d556b200, 0x00000000d6000000)
+ Metaspace       used 3690K, capacity 4664K, committed 4864K, reserved 1056768K
+  class space    used 354K, capacity 424K, committed 512K, reserved 1048576K
+}
+Event: 0.203 GC heap before
+{Heap before GC invocations=1 (full 0):
+ def new generation   total 4928K, used 4927K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K, 100% used [0x00000000c0000000, 0x00000000c0450000, 0x00000000c0450000)
+  from space 512K,  99% used [0x00000000c04d0000, 0x00000000c054fff8, 0x00000000c0550000)
+  to   space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+ tenured generation   total 10944K, used 108K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,   0% used [0x00000000d5550000, 0x00000000d556b100, 0x00000000d556b200, 0x00000000d6000000)
+ Metaspace       used 4213K, capacity 5008K, committed 5120K, reserved 1056768K
+  class space    used 433K, capacity 496K, committed 512K, reserved 1048576K
+Event: 0.206 GC heap after
+Heap after GC invocations=2 (full 0):
+ def new generation   total 4928K, used 512K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000c0450000)
+  from space 512K, 100% used [0x00000000c0450000, 0x00000000c04d0000, 0x00000000c04d0000)
+  to   space 512K,   0% used [0x00000000c04d0000, 0x00000000c04d0000, 0x00000000c0550000)
+ tenured generation   total 10944K, used 664K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,   6% used [0x00000000d5550000, 0x00000000d55f6388, 0x00000000d55f6400, 0x00000000d6000000)
+ Metaspace       used 4213K, capacity 5008K, committed 5120K, reserved 1056768K
+  class space    used 433K, capacity 496K, committed 512K, reserved 1048576K
+}
+Event: 0.294 GC heap before
+{Heap before GC invocations=2 (full 0):
+ def new generation   total 4928K, used 4928K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K, 100% used [0x00000000c0000000, 0x00000000c0450000, 0x00000000c0450000)
+  from space 512K, 100% used [0x00000000c0450000, 0x00000000c04d0000, 0x00000000c04d0000)
+  to   space 512K,   0% used [0x00000000c04d0000, 0x00000000c04d0000, 0x00000000c0550000)
+ tenured generation   total 10944K, used 664K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,   6% used [0x00000000d5550000, 0x00000000d55f6388, 0x00000000d55f6400, 0x00000000d6000000)
+ Metaspace       used 6011K, capacity 6184K, committed 6400K, reserved 1056768K
+  class space    used 663K, capacity 748K, committed 768K, reserved 1048576K
+Event: 0.296 GC heap after
+Heap after GC invocations=3 (full 0):
+ def new generation   total 4928K, used 512K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000c0450000)
+  from space 512K, 100% used [0x00000000c04d0000, 0x00000000c0550000, 0x00000000c0550000)
+  to   space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+ tenured generation   total 10944K, used 1217K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  11% used [0x00000000d5550000, 0x00000000d56805d8, 0x00000000d5680600, 0x00000000d6000000)
+ Metaspace       used 6011K, capacity 6184K, committed 6400K, reserved 1056768K
+  class space    used 663K, capacity 748K, committed 768K, reserved 1048576K
+}
+Event: 0.345 GC heap before
+{Heap before GC invocations=3 (full 0):
+ def new generation   total 4928K, used 4928K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K, 100% used [0x00000000c0000000, 0x00000000c0450000, 0x00000000c0450000)
+  from space 512K, 100% used [0x00000000c04d0000, 0x00000000c0550000, 0x00000000c0550000)
+  to   space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+ tenured generation   total 10944K, used 1217K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  11% used [0x00000000d5550000, 0x00000000d56805d8, 0x00000000d5680600, 0x00000000d6000000)
+ Metaspace       used 6285K, capacity 6472K, committed 6784K, reserved 1056768K
+  class space    used 712K, capacity 780K, committed 896K, reserved 1048576K
+Event: 0.348 GC heap after
+Heap after GC invocations=4 (full 0):
+ def new generation   total 4928K, used 512K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000c0450000)
+  from space 512K, 100% used [0x00000000c0450000, 0x00000000c04d0000, 0x00000000c04d0000)
+  to   space 512K,   0% used [0x00000000c04d0000, 0x00000000c04d0000, 0x00000000c0550000)
+ tenured generation   total 10944K, used 1746K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  15% used [0x00000000d5550000, 0x00000000d5704b90, 0x00000000d5704c00, 0x00000000d6000000)
+ Metaspace       used 6285K, capacity 6472K, committed 6784K, reserved 1056768K
+  class space    used 712K, capacity 780K, committed 896K, reserved 1048576K
+}
+Event: 0.426 GC heap before
+{Heap before GC invocations=4 (full 0):
+ def new generation   total 4928K, used 4928K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K, 100% used [0x00000000c0000000, 0x00000000c0450000, 0x00000000c0450000)
+  from space 512K, 100% used [0x00000000c0450000, 0x00000000c04d0000, 0x00000000c04d0000)
+  to   space 512K,   0% used [0x00000000c04d0000, 0x00000000c04d0000, 0x00000000c0550000)
+ tenured generation   total 10944K, used 1746K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  15% used [0x00000000d5550000, 0x00000000d5704b90, 0x00000000d5704c00, 0x00000000d6000000)
+ Metaspace       used 6978K, capacity 7112K, committed 7296K, reserved 1056768K
+  class space    used 805K, capacity 844K, committed 896K, reserved 1048576K
+Event: 0.428 GC heap after
+Heap after GC invocations=5 (full 0):
+ def new generation   total 4928K, used 511K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000c0450000)
+  from space 512K,  99% used [0x00000000c04d0000, 0x00000000c054fff8, 0x00000000c0550000)
+  to   space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+ tenured generation   total 10944K, used 2255K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  20% used [0x00000000d5550000, 0x00000000d5783e70, 0x00000000d5784000, 0x00000000d6000000)
+ Metaspace       used 6978K, capacity 7112K, committed 7296K, reserved 1056768K
+  class space    used 805K, capacity 844K, committed 896K, reserved 1048576K
+}
+Event: 0.456 GC heap before
+{Heap before GC invocations=5 (full 0):
+ def new generation   total 4928K, used 4927K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K, 100% used [0x00000000c0000000, 0x00000000c0450000, 0x00000000c0450000)
+  from space 512K,  99% used [0x00000000c04d0000, 0x00000000c054fff8, 0x00000000c0550000)
+  to   space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+ tenured generation   total 10944K, used 2255K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  20% used [0x00000000d5550000, 0x00000000d5783e70, 0x00000000d5784000, 0x00000000d6000000)
+ Metaspace       used 7104K, capacity 7208K, committed 7296K, reserved 1056768K
+  class space    used 814K, capacity 876K, committed 896K, reserved 1048576K
+Event: 0.457 GC heap after
+Heap after GC invocations=6 (full 0):
+ def new generation   total 4928K, used 222K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000c0450000)
+  from space 512K,  43% used [0x00000000c0450000, 0x00000000c04879d8, 0x00000000c04d0000)
+  to   space 512K,   0% used [0x00000000c04d0000, 0x00000000c04d0000, 0x00000000c0550000)
+ tenured generation   total 10944K, used 2459K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  22% used [0x00000000d5550000, 0x00000000d57b6d68, 0x00000000d57b6e00, 0x00000000d6000000)
+ Metaspace       used 7104K, capacity 7208K, committed 7296K, reserved 1056768K
+  class space    used 814K, capacity 876K, committed 896K, reserved 1048576K
+}
+Event: 0.472 GC heap before
+{Heap before GC invocations=6 (full 0):
+ def new generation   total 4928K, used 4638K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K, 100% used [0x00000000c0000000, 0x00000000c0450000, 0x00000000c0450000)
+  from space 512K,  43% used [0x00000000c0450000, 0x00000000c04879d8, 0x00000000c04d0000)
+  to   space 512K,   0% used [0x00000000c04d0000, 0x00000000c04d0000, 0x00000000c0550000)
+ tenured generation   total 10944K, used 2459K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  22% used [0x00000000d5550000, 0x00000000d57b6d68, 0x00000000d57b6e00, 0x00000000d6000000)
+ Metaspace       used 7108K, capacity 7208K, committed 7296K, reserved 1056768K
+  class space    used 814K, capacity 876K, committed 896K, reserved 1048576K
+Event: 0.472 GC heap after
+Heap after GC invocations=7 (full 0):
+ def new generation   total 4928K, used 292K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000c0450000)
+  from space 512K,  57% used [0x00000000c04d0000, 0x00000000c05192a8, 0x00000000c0550000)
+  to   space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+ tenured generation   total 10944K, used 2459K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  22% used [0x00000000d5550000, 0x00000000d57b6d68, 0x00000000d57b6e00, 0x00000000d6000000)
+ Metaspace       used 7108K, capacity 7208K, committed 7296K, reserved 1056768K
+  class space    used 814K, capacity 876K, committed 896K, reserved 1048576K
+}
+Event: 0.487 GC heap before
+{Heap before GC invocations=7 (full 0):
+ def new generation   total 4928K, used 4708K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K, 100% used [0x00000000c0000000, 0x00000000c0450000, 0x00000000c0450000)
+  from space 512K,  57% used [0x00000000c04d0000, 0x00000000c05192a8, 0x00000000c0550000)
+  to   space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+ tenured generation   total 10944K, used 2459K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  22% used [0x00000000d5550000, 0x00000000d57b6d68, 0x00000000d57b6e00, 0x00000000d6000000)
+ Metaspace       used 7118K, capacity 7272K, committed 7296K, reserved 1056768K
+  class space    used 814K, capacity 876K, committed 896K, reserved 1048576K
+Event: 0.488 GC heap after
+Heap after GC invocations=8 (full 0):
+ def new generation   total 4928K, used 120K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000c0450000)
+  from space 512K,  23% used [0x00000000c0450000, 0x00000000c046e088, 0x00000000c04d0000)
+  to   space 512K,   0% used [0x00000000c04d0000, 0x00000000c04d0000, 0x00000000c0550000)
+ tenured generation   total 10944K, used 2555K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  23% used [0x00000000d5550000, 0x00000000d57cede8, 0x00000000d57cee00, 0x00000000d6000000)
+ Metaspace       used 7118K, capacity 7272K, committed 7296K, reserved 1056768K
+  class space    used 814K, capacity 876K, committed 896K, reserved 1048576K
+}
+Event: 0.508 GC heap before
+{Heap before GC invocations=8 (full 0):
+ def new generation   total 4928K, used 4536K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K, 100% used [0x00000000c0000000, 0x00000000c0450000, 0x00000000c0450000)
+  from space 512K,  23% used [0x00000000c0450000, 0x00000000c046e088, 0x00000000c04d0000)
+  to   space 512K,   0% used [0x00000000c04d0000, 0x00000000c04d0000, 0x00000000c0550000)
+ tenured generation   total 10944K, used 2555K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  23% used [0x00000000d5550000, 0x00000000d57cede8, 0x00000000d57cee00, 0x00000000d6000000)
+ Metaspace       used 7145K, capacity 7272K, committed 7296K, reserved 1056768K
+  class space    used 814K, capacity 876K, committed 896K, reserved 1048576K
+Event: 0.509 GC heap after
+Heap after GC invocations=9 (full 0):
+ def new generation   total 4928K, used 512K [0x00000000c0000000, 0x00000000c0550000, 0x00000000d5550000)
+  eden space 4416K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000c0450000)
+  from space 512K, 100% used [0x00000000c04d0000, 0x00000000c0550000, 0x00000000c0550000)
+  to   space 512K,   0% used [0x00000000c0450000, 0x00000000c0450000, 0x00000000c04d0000)
+ tenured generation   total 10944K, used 2631K [0x00000000d5550000, 0x00000000d6000000, 0x0000000100000000)
+   the space 10944K,  24% used [0x00000000d5550000, 0x00000000d57e1e40, 0x00000000d57e2000, 0x00000000d6000000)
+ Metaspace       used 7145K, capacity 7272K, committed 7296K, reserved 1056768K
+  class space    used 814K, capacity 876K, committed 896K, reserved 1048576K
+}
